@@ -122,9 +122,9 @@ In Windows:
 
 
 
-### 2. Pytorch训练LPRNET模型
+## 2. Pytorch训练LPRNET模型
 
-##### 1. Requirements
+### 2.1. Requirements
 
 * pytorch==1.8.1
 
@@ -135,7 +135,7 @@ In Windows:
 * jupyter notebook
 * numpy
 
-##### 2. 数据集
+### 2.2. 数据集
 
 * 数据集来源：来自CCPD，取其中20%做训练集，10%做测试集
 
