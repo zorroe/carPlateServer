@@ -1,10 +1,16 @@
 # 车牌识别服务端
 
-[TOC]
+
+
+
 
 ## 1. <span id="jump">Yolo车牌检测模型</span>
 
-* 本文使用darknet训练车牌检测模型
+1. 本项目使用darknet训练车牌检测模型。
+
+2. 本项目是已经编译好的darknet，直接跳转至[数据集](#dataset)开始做，<font color=#FF0000 size=4>**建议重新编译**</font>，请看第三条。
+
+3. 若需要**重新编译**，跳转至[AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)，编译完成之后，从[数据集](#dataset)开始做。
 
 ### 1.1. Requirements
 
@@ -36,7 +42,11 @@ In Windows:
 
 ![x64 and Release](https://habrastorage.org/webt/ay/ty/f-/aytyf-8bufe7q-16yoecommlwys.jpeg)
 
-### 1.3. 数据集
+* 编译之后，把`\Release\darknet.ext`复制到`\build\darknet\x64\`文件夹下，双击不出现错误表明编译成功
+
+### 1.3. 数据集<span id="dataset"> </span>
+
+下述的存放路径都是在已经编译好的`darknet`项目文件夹下，即`darknet\build\darknet\x64\***`等。
 
 存放路径：`\build\darknet\x64\data`，`\build\darknet\x64\data`
 
@@ -66,13 +76,13 @@ In Windows:
 
 ### 1.4. 训练所需其他文件
 
-`train.txt`：train_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`
+`train.txt`：train_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`       [链接](https://drive.google.com/file/d/1UrqzksZ4Pt3cf8UQGTaoqbcZBN0ipnMg/view?usp=sharing)
 
-`val.txt`：val_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`
+`val.txt`：val_images中所有图片的路径，每个图片一行，`build\darknet\x64\data `     [链接](https://drive.google.com/file/d/1ZVRKGz4deIihBRLaOAwjkKWLXUY2FwVh/view?usp=sharing)
 
-`KD.names`：本文件每一行是一个类名，本项目只有一类`plate`，`build\darknet\x64\data`
+`KD.names`：本文件每一行是一个类名，本项目只有一类`plate`，`build\darknet\x64\data`      [链接](https://drive.google.com/file/d/1f54DGQQ_fCkvbXD7F1JcyVzl9b5TDjKa/view?usp=sharing)
 
-`KD.data`：`build\darknet\x64\data`
+`KD.data`：`build\darknet\x64\data`      [链接](https://drive.google.com/file/d/1iAFq8RXdTfkGuUrevovTZVyVOtObou5c/view?usp=sharing)
 
 > classes= 1                   # 本项目设置只包含车牌一个种类 
 > train = data/train.txt
@@ -80,7 +90,7 @@ In Windows:
 > names = data/KD.names
 > backup = backup/      # 生成的模型保存的位置
 
-`yolov3-KD.cfg`：复制`build\darknet\x64\cfg\yolov3.cfg`的内容修改其中的几处内容
+`yolov3-KD.cfg`：复制`build\darknet\x64\cfg\yolov3.cfg`的内容修改其中的几处内容   [链接](https://drive.google.com/file/d/1jhwOxiwV5Qa3nEHvyTi9a98Zvq7w6Ho5/view?usp=sharing)
 
 1. 每次计算的图片数目 = batch/subdivisions，GPU显存小的可以将batch调低
 2. classes设置为1
@@ -92,11 +102,13 @@ In Windows:
 
 [下载链接](https://pjreddie.com/media/files/darknet53.conv.74)：可以帮助训练更好的收敛
 
-### 1.6. 开始训练
+### 1.6. 开始训练<span id="start_train"> </span>
 
 `darknet.exe detector train data/KD.data cfg/yolov3-KD.cfg darknet53.conv.74`
 
 每迭代100次就会在backup文件夹上生成一个模型权重
+
+最终使用的权重[下载链接](https://drive.google.com/file/d/1Lqcq_oA74vw5lh0_IyEi15eog-qE34Fm/view?usp=sharing)
 
 ### 1.7. 测试
 
@@ -104,5 +116,28 @@ In Windows:
 
 > 注：`yolov3-KD_test.cfg`等于`yolov3-KD.cfg`，其中`batch`和`subdivisions`为1
 
-[<img src="https://z3.ax1x.com/2021/05/09/gYAHaV.png" alt="gYAHaV.png" style="zoom:50%;" />](https://imgtu.com/i/gYAHaV)[<img src="https://z3.ax1x.com/2021/05/09/gYAobq.png" alt="gYAobq.png" style="zoom:50%;" />](https://imgtu.com/i/gYAobq)[<img src="https://z3.ax1x.com/2021/05/09/gYAIrn.png" alt="gYAIrn.png" style="zoom:50%;" />](https://imgtu.com/i/gYAIrn)
+[<img src="https://z3.ax1x.com/2021/05/09/gYAHaV.png" alt="gYAHaV.png" style="zoom:50%;" />](https://imgtu.com/i/gYAHaV)[<img src="https://z3.ax1x.com/2021/05/09/gYAobq.png" alt="gYAobq.png" style="zoom:50%;" />](https://imgtu.com/i/gYAobq)[<img src="https://z3.ax1x.com/2021/05/09/gYAIrn.png" alt="gYAIrn.png" style="zoom:50%;" />](https://imgtu.com/i/gYAIrn)[<img src="https://z3.ax1x.com/2021/05/09/gYKJht.png" alt="gYKJht.png" style="zoom:50%;" />](https://imgtu.com/i/gYKJht)
+
+
+
+
+
+### 2. Pytorch训练LPRNET模型
+
+##### 1. Requirements
+
+* pytorch==1.8.1
+
+* cuda==10.1.168
+* cudnn==7.6.5
+* python==3.7
+* opencv-python=4.5
+* jupyter notebook
+* numpy
+
+##### 2. 数据集
+
+* 数据集来源：来自CCPD，取其中20%做训练集，10%做测试集
+
+* 下载链接：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1jF1I0I5ZCPXYlv0KdA5uZrtEoWhxWQ5A/view?usp=sharing)  
 

@@ -1,0 +1,6 @@
+E:/git/darknet/CMakeFiles/dark.dir
+E:/git/darknet/CMakeFiles/uselib.dir
+E:/git/darknet/CMakeFiles/INSTALL.dir
+E:/git/darknet/CMakeFiles/darknet.dir
+E:/git/darknet/CMakeFiles/ALL_BUILD.dir
+E:/git/darknet/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,2 @@
+E:/git/darknet/CMakeFiles/CheckCUDA/CMakeFiles/ALL_BUILD.dir
+E:/git/darknet/CMakeFiles/CheckCUDA/CMakeFiles/ZERO_CHECK.dir
