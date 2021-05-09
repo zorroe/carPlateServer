@@ -58,7 +58,7 @@ In Windows:
 
 每张车牌的`.jpg`图片对应一个`.txt`文件，**例如**
 
-[![gYA5Ks.jpg](https://z3.ax1x.com/2021/05/09/gYA5Ks.jpg)](https://imgtu.com/i/gYA5Ks)
+![gYA5Ks.jpg](https://z3.ax1x.com/2021/05/09/gYA5Ks.jpg)
 
 对应的`.txt`文件的内容是
 
@@ -116,9 +116,7 @@ In Windows:
 
 > 注：`yolov3-KD_test.cfg`等于`yolov3-KD.cfg`，其中`batch`和`subdivisions`为1
 
-[<img src="https://z3.ax1x.com/2021/05/09/gYAHaV.png" alt="gYAHaV.png" style="zoom:50%;" />](https://imgtu.com/i/gYAHaV)[<img src="https://z3.ax1x.com/2021/05/09/gYAobq.png" alt="gYAobq.png" style="zoom:50%;" />](https://imgtu.com/i/gYAobq)[<img src="https://z3.ax1x.com/2021/05/09/gYAIrn.png" alt="gYAIrn.png" style="zoom:50%;" />](https://imgtu.com/i/gYAIrn)[<img src="https://z3.ax1x.com/2021/05/09/gYKJht.png" alt="gYKJht.png" style="zoom:50%;" />](https://imgtu.com/i/gYKJht)
-
-
+![gYAHaV.png](https://z3.ax1x.com/2021/05/09/gYAHaV.png)![gYAobq.png](https://z3.ax1x.com/2021/05/09/gYAobq.png)![gYKJht.png](https://z3.ax1x.com/2021/05/09/gYKJht.png)![gYAIrn.png](https://z3.ax1x.com/2021/05/09/gYAIrn.png)
 
 
 
@@ -140,4 +138,12 @@ In Windows:
 * 数据集来源：来自CCPD，取其中20%做训练集，10%做测试集
 
 * 下载链接：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1jF1I0I5ZCPXYlv0KdA5uZrtEoWhxWQ5A/view?usp=sharing)  
+
+### 2.3. 训练
+
+* 做30epoch的训练结果
+
+![gYdvNV.png](https://z3.ax1x.com/2021/05/09/gYdvNV.png)
+
+
 
