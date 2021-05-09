@@ -1,2 +1,108 @@
-# carPlateServer
-车牌识别服务端
+# 车牌识别服务端
+
+[TOC]
+
+## 1. <span id="jump">Yolo车牌检测模型</span>
+
+* 本文使用darknet训练车牌检测模型
+
+### 1.1. Requirements
+
+* **CMake >= 3.18**: https://cmake.org/download/
+* **Powershell** (already installed on windows): https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell
+* **CUDA >= 10.2**: https://developer.nvidia.com/cuda-toolkit-archive 
+* **OpenCV >= 2.4**: [OpenCV official site](https://opencv.org/releases.html) (on Windows set system variable `OpenCV_DIR` = `C:\opencv\build` - where are the `include` and `x64` folders [image](https://user-images.githubusercontent.com/4096485/53249516-5130f480-36c9-11e9-8238-a6e82e48c6f2.png))
+* **cuDNN >= 8.0.2** https://developer.nvidia.com/rdp/cudnn-archive ，on **Windows** copy `cudnn.h`,`cudnn64_7.dll`, `cudnn64_7.lib` as described here https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installwindows )
+
+* **GPU with CC >= 3.0**: https://en.wikipedia.org/wiki/CUDA#GPUs_supported##### 
+
+### 1.2. compile on Windows (using `CMake`)
+
+Requires:
+
+* **MSVC**：https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community
+* **CMake GUI**： `Windows win64-x64 Installer`https://cmake.org/download/
+* **cmd**：`git clone git@github.com:AlexeyAB/darknet.git`
+
+In Windows:
+
+* Start (button) -> All programs -> CMake -> CMake (gui) ->
+
+* [look at image](https://habrastorage.org/webt/pz/s1/uu/pzs1uu4heb7vflfcjqn-lxy-aqu.jpeg) In CMake: Enter input path to the darknet Source, and output path to the Binaries -> Configure (button) -> Optional platform for generator: `x64`  -> Finish -> Generate -> Open Project ->
+
+* in MS Visual Studio: Select: x64 and Release -> Build -> Build solution
+
+* find the executable file `darknet.exe` in the output path to the binaries you specified
+
+![x64 and Release](https://habrastorage.org/webt/ay/ty/f-/aytyf-8bufe7q-16yoecommlwys.jpeg)
+
+### 1.3. 数据集
+
+存放路径：`\build\darknet\x64\data`，`\build\darknet\x64\data`
+
+* 数据集来源：[YoLo数据集 ](https://gitee.com/lx1318753541/yolo-dataset)
+
+* 数据集解释：
+
+[![gYA7V0.png](https://z3.ax1x.com/2021/05/09/gYA7V0.png)](https://imgtu.com/i/gYA7V0)
+
+每张车牌的`.jpg`图片对应一个`.txt`文件，**例如**
+
+[![gYA5Ks.jpg](https://z3.ax1x.com/2021/05/09/gYA5Ks.jpg)](https://imgtu.com/i/gYA5Ks)
+
+对应的`.txt`文件的内容是
+
+> 0 0.5091863517060368 0.7595238095238095 0.48293963254593175 0.36666666666666664
+
+第一个数字0表示**第0类**（本数据集只设置一个车牌类别所以只有0）
+
+第二个数字表示**中心点横坐标**
+
+第三个数字表示**中心点纵坐标**
+
+第四个数字表示**标注框宽度**（相对宽度）
+
+第五个数字表示**标注框高度**（相对高度）
+
+### 1.4. 训练所需其他文件
+
+`train.txt`：train_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`
+
+`val.txt`：val_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`
+
+`KD.names`：本文件每一行是一个类名，本项目只有一类`plate`，`build\darknet\x64\data`
+
+`KD.data`：`build\darknet\x64\data`
+
+> classes= 1                   # 本项目设置只包含车牌一个种类 
+> train = data/train.txt
+> valid = data/val.txt
+> names = data/KD.names
+> backup = backup/      # 生成的模型保存的位置
+
+`yolov3-KD.cfg`：复制`build\darknet\x64\cfg\yolov3.cfg`的内容修改其中的几处内容
+
+1. 每次计算的图片数目 = batch/subdivisions，GPU显存小的可以将batch调低
+2. classes设置为1
+3. filters设置为18，filters的计算公式为$filter = (classes + 5) * 3$
+
+### 1.5. 预训练权重
+
+存放路径：`build\darknet\x64`
+
+[下载链接](https://pjreddie.com/media/files/darknet53.conv.74)：可以帮助训练更好的收敛
+
+### 1.6. 开始训练
+
+`darknet.exe detector train data/KD.data cfg/yolov3-KD.cfg darknet53.conv.74`
+
+每迭代100次就会在backup文件夹上生成一个模型权重
+
+### 1.7. 测试
+
+`darknet.exe detector test data/KD.data cfg/yolov3-KD_test.cfg backup/yolov3-KD_last.weights data/val_images/4887.jpg -thresh 0.5`
+
+> 注：`yolov3-KD_test.cfg`等于`yolov3-KD.cfg`，其中`batch`和`subdivisions`为1
+
+[<img src="https://z3.ax1x.com/2021/05/09/gYAHaV.png" alt="gYAHaV.png" style="zoom:50%;" />](https://imgtu.com/i/gYAHaV)[<img src="https://z3.ax1x.com/2021/05/09/gYAobq.png" alt="gYAobq.png" style="zoom:50%;" />](https://imgtu.com/i/gYAobq)[<img src="https://z3.ax1x.com/2021/05/09/gYAIrn.png" alt="gYAIrn.png" style="zoom:50%;" />](https://imgtu.com/i/gYAIrn)
+
