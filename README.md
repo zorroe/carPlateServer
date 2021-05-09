@@ -76,13 +76,13 @@ In Windows:
 
 ### 1.4. 训练所需其他文件
 
-`train.txt`：train_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`       [链接](https://drive.google.com/file/d/1UrqzksZ4Pt3cf8UQGTaoqbcZBN0ipnMg/view?usp=sharing)
+`train.txt`：train_images中所有图片的路径，每个图片一行，`build\darknet\x64\data`       [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1UrqzksZ4Pt3cf8UQGTaoqbcZBN0ipnMg/view?usp=sharing)
 
-`val.txt`：val_images中所有图片的路径，每个图片一行，`build\darknet\x64\data `     [链接](https://drive.google.com/file/d/1ZVRKGz4deIihBRLaOAwjkKWLXUY2FwVh/view?usp=sharing)
+`val.txt`：val_images中所有图片的路径，每个图片一行，`build\darknet\x64\data `     [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1ZVRKGz4deIihBRLaOAwjkKWLXUY2FwVh/view?usp=sharing)
 
-`KD.names`：本文件每一行是一个类名，本项目只有一类`plate`，`build\darknet\x64\data`      [链接](https://drive.google.com/file/d/1f54DGQQ_fCkvbXD7F1JcyVzl9b5TDjKa/view?usp=sharing)
+`KD.names`：本文件每一行是一个类名，本项目只有一类`plate`，`build\darknet\x64\data`      [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1f54DGQQ_fCkvbXD7F1JcyVzl9b5TDjKa/view?usp=sharing)
 
-`KD.data`：`build\darknet\x64\data`      [链接](https://drive.google.com/file/d/1iAFq8RXdTfkGuUrevovTZVyVOtObou5c/view?usp=sharing)
+`KD.data`：`build\darknet\x64\data`      [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1iAFq8RXdTfkGuUrevovTZVyVOtObou5c/view?usp=sharing)
 
 > classes= 1                   # 本项目设置只包含车牌一个种类 
 > train = data/train.txt
@@ -90,7 +90,7 @@ In Windows:
 > names = data/KD.names
 > backup = backup/      # 生成的模型保存的位置
 
-`yolov3-KD.cfg`：复制`build\darknet\x64\cfg\yolov3.cfg`的内容修改其中的几处内容   [链接](https://drive.google.com/file/d/1jhwOxiwV5Qa3nEHvyTi9a98Zvq7w6Ho5/view?usp=sharing)
+`yolov3-KD.cfg`：复制`build\darknet\x64\cfg\yolov3.cfg`的内容修改其中的几处内容   [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1jhwOxiwV5Qa3nEHvyTi9a98Zvq7w6Ho5/view?usp=sharing)
 
 1. 每次计算的图片数目 = batch/subdivisions，GPU显存小的可以将batch调低
 2. classes设置为1
@@ -108,7 +108,7 @@ In Windows:
 
 每迭代100次就会在backup文件夹上生成一个模型权重
 
-最终使用的权重[下载链接](https://drive.google.com/file/d/1Lqcq_oA74vw5lh0_IyEi15eog-qE34Fm/view?usp=sharing)
+最终使用的权重[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1Lqcq_oA74vw5lh0_IyEi15eog-qE34Fm/view?usp=sharing)
 
 ### 1.7. 测试
 
@@ -135,9 +135,10 @@ In Windows:
 
 ### 2.2. 数据集
 
-* 数据集来源：来自CCPD，取其中20%做训练集，10%做测试集
-
-* 下载链接：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1jF1I0I5ZCPXYlv0KdA5uZrtEoWhxWQ5A/view?usp=sharing)  
+* 训练数据集来源：来自CCPD，取其中20%做训练集，10%做测试集
+* 训练数据集：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1jF1I0I5ZCPXYlv0KdA5uZrtEoWhxWQ5A/view?usp=sharing)  
+* 单张测试文件：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1iO_pi7opelkd6zoPi974hhk6bIFKOkc6/view?usp=sharing)  
+* 多张测试文件：[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1WAVTzvLg6hmr4NXvYsde6pgIi99unIOH/view?usp=sharing)
 
 ### 2.3. 训练
 
@@ -145,5 +146,19 @@ In Windows:
 
 ![gYdvNV.png](https://z3.ax1x.com/2021/05/09/gYdvNV.png)
 
+### 2.4. 模型测试结果
 
+> ```
+> Validation Accuracy: 0.8641534901658311 [26889:1240:2987:31116]
+> ```
+
+### 2.5. 模型下载链接
+
+[Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1MOhUsgZ-ocx04ogWGWPzRvkW4JvBC3Mj/view?usp=sharing)
+
+
+
+## 3. 部署至服务器
+
+### 3.1 Django框架
 
