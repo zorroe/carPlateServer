@@ -153,9 +153,18 @@ In Windows:
 
 [Google Drive (访问需要挂梯子)](https://drive.google.com/file/d/1MOhUsgZ-ocx04ogWGWPzRvkW4JvBC3Mj/view?usp=sharing)
 
-
-
 ## 3. 部署至服务器
 
 ### 3.1 Django框架
+
+Django 是一个开放源代码的 Web 应用框架，由 Python 写成。
+
+### 3.2 Requirements
+
+* Django=2.2.5
+* opencv-python=4.5
+
+### 3.3 介绍
+
+使用Django框架部署至服务端，开设端口，端口号为`139.196.240.235:10000`，客户端朝此ip地址发送图像的base64编码之后，服务端会解码，然后调用LPRNet进行识别，然后将识别成功的字符进行返回。
 
