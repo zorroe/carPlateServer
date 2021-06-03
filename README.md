@@ -2,15 +2,12 @@
 
 
 
-
-
-## 1. <span id="jump">Yolo车牌检测模型</span>
+## 1. Yolo车牌检测模型
 
 1. 本项目使用darknet训练车牌检测模型。
-
-2. 本项目是已经编译好的darknet，直接跳转至[数据集](#dataset)开始做，<font color=#FF0000 size=4>**建议重新编译**</font>，请看第三条。
-
-3. 若需要**重新编译**，跳转至[AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)，编译完成之后，从[数据集](#dataset)开始做。
+2.  YoLo目标检测算法[![DOI](https://zenodo.org/badge/146165888.svg)](https://zenodo.org/badge/latestdoi/146165888)
+3. 本项目是已经编译好的darknet，直接跳转至[数据集](#dataset)开始做，<font color=#FF0000 size=4>**建议重新编译**</font>，请看第四条。
+4. 若需要**重新编译**，跳转至[AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)，编译完成之后，从[数据集](#dataset)开始做。
 
 ### 1.1. Requirements
 
@@ -54,7 +51,7 @@ In Windows:
 
 * 数据集解释：
 
-[![gYA7V0.png](https://z3.ax1x.com/2021/05/09/gYA7V0.png)](https://imgtu.com/i/gYA7V0)
+![gYA7V0.png](https://z3.ax1x.com/2021/05/09/gYA7V0.png)
 
 每张车牌的`.jpg`图片对应一个`.txt`文件，**例如**
 
