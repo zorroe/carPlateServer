@@ -21,5 +21,5 @@ from app import views2
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.carPlate),
-    path('schedule', views2.schedule),
+    path('schedule/', views2.schedule),
 ]

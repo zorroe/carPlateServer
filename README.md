@@ -163,6 +163,9 @@ Django 是一个开放源代码的 Web 应用框架，由 Python 写成。
 
 * Django=2.2.5
 * opencv-python=4.5
+* torch==1.8.1
+* torchaudio==0.8.1
+* torchvision==0.9.1
 
 ### 3.3 介绍
 

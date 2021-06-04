@@ -5,6 +5,7 @@ from torch import nn
 from PIL import Image
 import torch
 from torchvision import transforms
+from io import BytesIO
 
 
 class small_basic_block(nn.Module):
@@ -105,7 +106,7 @@ T_length = 18  # 最大8位车牌，每个真实标签前后都要有一个空�
 pretrained_weights_path = '/root/carPlate/app/LPRNet__epoch_21.pth'
 
 
-def getPlate(img_path):
+def getPlate(pilimage):
     preprocess_transform = transforms.Compose([
         transforms.Resize((24, 94)),
         transforms.ToTensor(),
@@ -114,7 +115,7 @@ def getPlate(img_path):
     net = LPRNet(class_num=len(labels)).to(device)
     net.load_state_dict(torch.load(pretrained_weights_path, map_location=device))
     # print("load pretrained model successful!")
-    img = Image.open(img_path).convert('RGB')
+    img = pilimage.convert('RGB')
     img = preprocess_transform(img).to(device)
     net.eval()
     with torch.no_grad():
@@ -149,12 +150,10 @@ img_path = '2.png'
 def carPlate(request):
     if request.method == "POST":
         if (request.POST.get('img')):
-            img = base64.b64decode(request.POST.get('img'))
-            with open(img_path, 'wb') as f:
-                f.write(img)
-            plate = getPlate(img_path)
+            img_data = base64.b64decode(request.POST.get('img'))
+            pilimage = Image.open(BytesIO(img_data))
+            plate = getPlate(pilimage)
             plate_json = {'plate': plate}
-            # print(plate_json)
             return JsonResponse(plate_json)
         else:
             return JsonResponse({'plate':' '})
